@@ -1,14 +1,21 @@
+import fs from "node:fs";
 import path from "node:path";
 import { PrismaClient } from "@prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaBetterSQLite3 } from "@prisma/adapter-better-sqlite3";
 
 let _prisma: PrismaClient;
 
+const PRISMA_SCHEMA_DIR = path.resolve(__dirname, "../../prisma");
+
 export async function initPrisma(): Promise<PrismaClient> {
-  const url = process.env.DATABASE_URL ?? "file:./prisma/dev.db";
+  const url = process.env.DATABASE_URL ?? "file:./dev.db";
   const filePath = url.startsWith("file:") ? url.slice(5) : url;
-  const absolutePath = path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath);
-  const factory = new PrismaBetterSqlite3({ url: absolutePath });
+  const absolutePath = path.isAbsolute(filePath) ? filePath : path.resolve(PRISMA_SCHEMA_DIR, filePath);
+  const dir = path.dirname(absolutePath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  const factory = new PrismaBetterSQLite3({ url: absolutePath });
   const client = new PrismaClient({
     adapter: factory,
     log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],

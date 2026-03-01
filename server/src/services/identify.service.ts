@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import { getPrisma } from "../db/client.js";
 import * as contactRepository from "../repositories/contact.repository.js";
 import type { Contact } from "../models/contact.model.js";
@@ -79,7 +80,7 @@ async function mergePrimaries(
   const winner = sorted[0];
   const toDemote = sorted.slice(1);
   const prisma = getPrisma();
-  await prisma.$transaction(async (tx) => {
+  await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
     for (const p of toDemote) {
       await tx.contact.update({
         where: { id: p.id },

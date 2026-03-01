@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://identity-reconciliation-q5m7.onrender.com";
 const responseEl = document.getElementById("response");
 const btnHealth = document.getElementById("btn-health");
 const btnContacts = document.getElementById("btn-contacts");
