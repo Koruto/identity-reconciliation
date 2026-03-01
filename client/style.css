@@ -5,45 +5,59 @@
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 0;
-  padding: 1rem;
-  background: #1a1a2e;
-  color: #eee;
+  padding: 1.5rem;
+  background: #e8eaf0;
+  color: #2c2e36;
   min-height: 100vh;
 }
 
 main {
-  max-width: 32rem;
+  max-width: 56rem;
   margin: 0 auto;
 }
 
 h1 {
   font-size: 1.5rem;
   margin-bottom: 0.25rem;
+  color: #1a1c24;
 }
 
 .hint {
   font-size: 0.875rem;
-  color: #888;
+  color: #5c5e6a;
   margin-bottom: 1.5rem;
 }
 
 .hint code {
-  background: #2a2a4a;
+  background: #d4d6de;
   padding: 0.2em 0.5em;
   border-radius: 4px;
+  color: #2c2e36;
+}
+
+.endpoints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.endpoints section {
+  flex: 1;
+  min-width: 12rem;
 }
 
 section {
-  background: #16213e;
+  background: #f4f5f8;
+  border: 1px solid #d4d6de;
   border-radius: 8px;
   padding: 1rem;
-  margin-bottom: 1rem;
 }
 
 section h2 {
   font-size: 1rem;
   margin: 0 0 0.75rem;
-  color: #a0a0c0;
+  color: #4a4c56;
 }
 
 .row {
@@ -53,7 +67,7 @@ section h2 {
 label {
   display: block;
   font-size: 0.875rem;
-  color: #b0b0d0;
+  color: #5c5e6a;
 }
 
 input {
@@ -61,25 +75,29 @@ input {
   width: 100%;
   margin-top: 0.25rem;
   padding: 0.5rem;
-  border: 1px solid #3a3a5e;
+  border: 1px solid #c8cad4;
   border-radius: 4px;
-  background: #1a1a2e;
-  color: #eee;
+  background: #fff;
+  color: #2c2e36;
   font-size: 1rem;
+}
+
+input::placeholder {
+  color: #9a9ca8;
 }
 
 button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
-  background: #0f3460;
-  color: #eee;
+  background: #5c6bc0;
+  color: #fff;
   font-size: 0.9375rem;
   cursor: pointer;
 }
 
 button:hover {
-  background: #1a4a7a;
+  background: #6c7bd0;
 }
 
 button:disabled {
@@ -87,21 +105,27 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.output {
+  margin-top: 0;
+}
+
 .output pre {
   margin: 0;
-  padding: 0.75rem;
-  background: #0d0d1a;
-  border-radius: 4px;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #d4d6de;
+  border-radius: 6px;
   font-size: 0.8125rem;
   overflow-x: auto;
   white-space: pre-wrap;
   word-break: break-all;
+  color: #2c2e36;
 }
 
 .output pre.loading {
-  color: #888;
+  color: #7c7e8a;
 }
 
 .output pre.error {
-  color: #e88;
+  color: #c62828;
 }

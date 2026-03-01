@@ -11,26 +11,28 @@
     <h1>Identity API</h1>
     <p class="hint">Server: <code id="api-base">http://localhost:3000</code></p>
 
-    <section>
-      <h2>Health</h2>
-      <button type="button" id="btn-health">GET /health</button>
-    </section>
+    <div class="endpoints">
+      <section>
+        <h2>Health</h2>
+        <button type="button" id="btn-health">GET /health</button>
+      </section>
 
-    <section>
-      <h2>Current contacts (DB)</h2>
-      <button type="button" id="btn-contacts">GET /contacts</button>
-    </section>
+      <section>
+        <h2>Current contacts (DB)</h2>
+        <button type="button" id="btn-contacts">GET /contacts</button>
+      </section>
 
-    <section>
-      <h2>Identify</h2>
-      <div class="row">
-        <label>Email <input type="text" id="input-email" placeholder="e.g. user@example.com"></label>
-      </div>
-      <div class="row">
-        <label>Phone <input type="text" id="input-phone" placeholder="e.g. 123456"></label>
-      </div>
-      <button type="button" id="btn-identify">POST /identify</button>
-    </section>
+      <section>
+        <h2>Identify</h2>
+        <div class="row">
+          <label>Email <input type="text" id="input-email" placeholder="e.g. user@example.com"></label>
+        </div>
+        <div class="row">
+          <label>Phone <input type="text" id="input-phone" placeholder="e.g. 123456"></label>
+        </div>
+        <button type="button" id="btn-identify">POST /identify</button>
+      </section>
+    </div>
 
     <section class="output">
       <h2>Response</h2>

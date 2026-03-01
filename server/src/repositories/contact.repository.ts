@@ -1,6 +1,5 @@
 import { getPrisma } from "../db/client.js";
 import type { Contact, CreateContactInput, LinkPrecedence } from "../models/contact.model.js";
-import { normalizeEmail, normalizePhone } from "../utils/normalize.js";
 
 function mapRow(row: {
   id: number;
@@ -25,22 +24,18 @@ function mapRow(row: {
 }
 
 export async function findByEmail(email: string): Promise<Contact[]> {
-  const normalized = normalizeEmail(email);
-  if (!normalized) return [];
   const prisma = getPrisma();
   const rows = await prisma.contact.findMany({
-    where: { email: normalized, deletedAt: null },
+    where: { email: email, deletedAt: null },
     orderBy: { createdAt: "asc" },
   });
   return rows.map(mapRow);
 }
 
 export async function findByPhoneNumber(phone: string): Promise<Contact[]> {
-  const normalized = normalizePhone(phone);
-  if (!normalized) return [];
   const prisma = getPrisma();
   const rows = await prisma.contact.findMany({
-    where: { phoneNumber: normalized, deletedAt: null },
+    where: { phoneNumber: phone, deletedAt: null },
     orderBy: { createdAt: "asc" },
   });
   return rows.map(mapRow);
@@ -65,19 +60,11 @@ export async function findSecondaryByLinkedId(primaryId: number): Promise<Contac
 
 export async function create(data: CreateContactInput): Promise<Contact> {
   const prisma = getPrisma();
-  const email =
-    data.email !== undefined && data.email !== null
-      ? normalizeEmail(String(data.email))
-      : undefined;
-  const phoneNumber =
-    data.phoneNumber !== undefined && data.phoneNumber !== null
-      ? normalizePhone(data.phoneNumber)
-      : undefined;
   const row = await prisma.contact.create({
     data: {
-      email: email ?? undefined,
-      phoneNumber: phoneNumber ?? undefined,
-      linkedId: data.linkedId ?? undefined,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      linkedId: data.linkedId,
       linkPrecedence: data.linkPrecedence,
     },
   });
