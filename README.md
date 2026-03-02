@@ -5,6 +5,13 @@ A small web service that identifies and links customer identities across orders 
 - **Server:** Node.js + TypeScript + Express + Prisma (SQLite by default).
 - **Client:** Static HTML/JS/CSS to call the API (health, identify, list contacts).
 
+## Live
+
+- **Client (GitHub Pages):** [https://koruto.github.io/identity-reconciliation/](https://koruto.github.io/identity-reconciliation/)
+- **API (Render):** [https://identity-reconciliation-q5m7.onrender.com](https://identity-reconciliation-q5m7.onrender.com)
+
+The client is configured to use the Render API by default when opened from the live URL.
+
 ---
 
 ## Project structure
@@ -88,7 +95,7 @@ Then open `client/index.html` and use the buttons to call the API.
 
 ## API
 
-Base URL: `http://localhost:3000` (configurable via client `API_BASE` and server `PORT`).
+Base URL: `http://localhost:3000` locally, or [https://identity-reconciliation-q5m7.onrender.com](https://identity-reconciliation-q5m7.onrender.com) for the live deployment (configurable via client `API_BASE` and server `PORT`).
 
 | Method | Path        | Description                                              |
 | ------ | ----------- | -------------------------------------------------------- |
